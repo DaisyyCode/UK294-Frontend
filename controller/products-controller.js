@@ -12,7 +12,33 @@ class ProductsController {
         row.insertCell().textContent = product.name;
         row.insertCell().textContent = product.price;
         row.insertCell().textContent = product.stock;
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Löschen";
+        deleteButton.addEventListener("click", () => {
+          ProductsController.handleDelete(product, row);
+        });
+        row.insertCell().append(deleteButton);
       });
+    } catch (exception) {
+      error.textContent = exception.message;
+    }
+  }
+  // deleteFunction
+  static async handleDelete(product, row) {
+    const error = document.getElementById("product-error");
+    const confirmed = confirm(
+      `Möchtest du "${product.name}" wirklich löschen?`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      error.textContent = "";
+      await ProductModel.delete(product.sku);
+      row.remove();
     } catch (exception) {
       error.textContent = exception.message;
     }
