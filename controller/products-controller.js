@@ -18,7 +18,17 @@ class ProductsController {
         deleteButton.addEventListener("click", () => {
           ProductsController.handleDelete(product, row);
         });
-        row.insertCell().append(deleteButton);
+        const sku = encodeURIComponent(product.sku);
+
+        const viewLink = document.createElement("a");
+        viewLink.href = `product.php?sku=${sku}`;
+        viewLink.textContent = "Ansehen";
+
+        const editLink = document.createElement("a");
+        editLink.href = `product-form.php?sku=${sku}`;
+        editLink.textContent = "Bearbeiten";
+
+        row.insertCell().append(viewLink, " ", editLink, " ", deleteButton);
       });
     } catch (exception) {
       error.textContent = exception.message;

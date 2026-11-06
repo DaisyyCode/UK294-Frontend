@@ -3,7 +3,7 @@
 <?php $page_controller_path = "controller/product-form-controller.js"; ?>
 <?php require "view/blocks/header.php"; ?>
 
-<h1>Neues Produkt</h1>
+<h1 id="form-title">Neues Produkt</h1>
 
 <p id="product-form-error"></p>
 

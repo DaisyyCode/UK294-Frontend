@@ -17,6 +17,27 @@ class ProductModel {
     return response.json();
   }
 
+  // Get a single product by SKU
+  static async getSku(sku) {
+    const response = await fetch(
+      `${API_URL}/product/${encodeURIComponent(sku)}`,
+      {
+        credentials: "include",
+      },
+    );
+
+    if (response.status === 401) {
+      window.location.href = "login.php";
+      return null;
+    }
+
+    if (!response.ok) {
+      throw new Error("Das Produkt konnte nicht geladen werden.");
+    }
+
+    return response.json();
+  }
+
   // Add or save the product
   static async save(sku, product) {
     const response = await fetch(
