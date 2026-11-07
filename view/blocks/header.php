@@ -60,4 +60,4 @@
             </div>
         </div>
     </nav>
-    <main class="container">
+    <main class="container" id="main-content" <?= $page_title !== "Login" ? "hidden" : "" ?>>
