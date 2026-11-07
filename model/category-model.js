@@ -64,6 +64,27 @@ class CategoryModel {
     CategoryModel.checkSaveResponse(response);
   }
 
+  static async delete(categoryId) {
+    const response = await fetch(
+      `${API_URL}/category/${encodeURIComponent(categoryId)}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      },
+    );
+
+    if (response.status === 401) {
+      window.location.href = "login.php";
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error(
+        "Die Kategorie konnte nicht gelöscht werden. Möglicherweise gehören noch Produkte dazu.",
+      );
+    }
+  }
+
   static checkSaveResponse(response) {
     if (response.status === 401) {
       window.location.href = "login.php";
