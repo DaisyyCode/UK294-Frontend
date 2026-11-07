@@ -13,6 +13,9 @@ class ProductsController {
         row.insertCell().textContent = product.price;
         row.insertCell().textContent = product.stock;
         const deleteButton = document.createElement("button");
+        // CSS classes for buttons
+        deleteButton.className = "btn btn-sm btn-danger";
+
         deleteButton.type = "button";
         deleteButton.textContent = "Löschen";
         deleteButton.addEventListener("click", () => {
@@ -23,10 +26,14 @@ class ProductsController {
         const viewLink = document.createElement("a");
         viewLink.href = `product.php?sku=${sku}`;
         viewLink.textContent = "Ansehen";
+        // CSS classes for buttons
+        viewLink.className = "btn btn-sm btn-outline-primary";
 
         const editLink = document.createElement("a");
         editLink.href = `product-form.php?sku=${sku}`;
         editLink.textContent = "Bearbeiten";
+        // CSS classes for buttons
+        editLink.className = "btn btn-sm btn-outline-secondary";
 
         row.insertCell().append(viewLink, " ", editLink, " ", deleteButton);
       });
